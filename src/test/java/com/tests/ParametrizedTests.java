@@ -1,27 +1,27 @@
 package com.tests;
 
-
 import com.codeborne.selenide.Condition;
 import com.tests.domain.MenuItem;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.*;
+
+
 import java.util.stream.Stream;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-
 public class ParametrizedTests extends TestBase {
 
     @ValueSource(strings = {
-            "Iphone 13",
+            "Беспроводные клавиатуры Logitech MX Keys",
             "Наушники Sony",
-            "Smart watch"
+            "Apple watch"
     })
     @ParameterizedTest(name = "FindThing - {0}")
     void findProductOnPage(String goods) {
-        open(UrlSbermMarket);
+        open(UrlSber);
         $(".search-field-input").setValue(goods).pressEnter();
         $(".filter.category-nav").shouldHave(text("Продавец"));
     }
@@ -33,7 +33,7 @@ public class ParametrizedTests extends TestBase {
     })
     @ParameterizedTest(name = "{1}")
     void findProductOnPageCsv(String goods, String price) {
-        open(UrlSbermMarket);
+        open(UrlSber);
         $(".search-field-input").setValue(goods).pressEnter();
         $(".range-inputs input").setValue(price).pressEnter();;
         $(".filter.category-nav").shouldHave(text("Продавец"));
